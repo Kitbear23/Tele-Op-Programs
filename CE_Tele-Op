@@ -115,7 +115,9 @@ task main()
 
 	while(true)
 	{
-		//Grabber
+		///////////
+		//Grabber//
+		//////////
 		if(servo[GoalServo] == 90)
 		{
 			if(joy1Btn(4) == true)
