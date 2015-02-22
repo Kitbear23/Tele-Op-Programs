@@ -1,5 +1,6 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  none)
-#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
+#pragma config(Sensor, S2,     IRSensor,       sensorHiTechnicIRSeeker1200)
+#pragma config(Sensor, S3,     GyroSensor,     sensorI2CHiTechnicGyro)
 #pragma config(Motor,  mtr_S1_C1_1,     LeftMotor,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     RightMotor,    tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_1,     GripperMotor,  tmotorTetrix, openLoop)
@@ -112,7 +113,7 @@ task main()
 {
 	initializeRobot();
 
-	waitForStart();   // wait for start of tele-op phase
+	//waitForStart();   // wait for start of tele-op phase
 
 	while(true)
 	{
@@ -168,7 +169,7 @@ task main()
 
 		if(servo[GripperServo] == 0)
 		{
-			if(joy1Btn(7) == true)
+			if(joy1Btn(Btn7) == true)
 			{
 				servo[GripperServo] = 145;
 				wait1Msec(500);
@@ -179,7 +180,7 @@ task main()
 		}
 		else if(servo[GripperServo] == 145)
 		{
-			if(joy1Btn(7) == true)
+			if(joy1Btn(Btn7) == true)
 			{
 				servo[GripperServo] = 0;
 				wait1Msec(500);
