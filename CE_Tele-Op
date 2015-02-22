@@ -71,6 +71,7 @@ void initializeRobot()
 	Joy1Btn3_Previous = false;
 	servo(GoalServo) = 90;
 	servo(GripperServo) = 145;
+	servo(HookServo) = 0;
 	motor[LeftMotor] = 0;
 	motor[RightMotor] = 0;
 	JoystickMode = MODE_FORWARD;
@@ -115,9 +116,28 @@ task main()
 
 	while(true)
 	{
+		//////////
+		// Hook //
+		//////////
+		if(servo[HookServo] == 90)
+		{
+			if(joystick.joy1_TopHat == 4)
+			{
+				servo[HookServo] = 240;
+				wait1Msec(500);
+			}
+		}
+		else if(servo[HookServo] == 240)
+		{
+			if(joystick.joy1_TopHat == 4)
+			{
+				servo[HookServo] = 90;
+				wait1Msec(500);
+			}
+		}
 		///////////
 		//Grabber//
-		//////////
+		///////////
 		if(servo[GoalServo] == 90)
 		{
 			if(joy1Btn(4) == true)
