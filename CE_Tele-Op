@@ -37,10 +37,12 @@
 #define LNR_FOURTH_MTR_PWR       1
 #define LNR_FULL_MTR_PWR         2
 
+int IRSensorValue;
 int BaseMotorPowerPreviousUpdate_L;
 int BaseMotorPowerPreviousUpdate_R;
 int Joystick_L;
 int Joystick_R;
+int HookValue;
 bool RedBtn;
 bool Joy1Btn3_Previous;
 int JoystickMode;
@@ -117,22 +119,25 @@ task main()
 
 	while(true)
 	{
+		IRSensorValue = SensorValue(IRSensor);
 		//////////
 		// Hook //
 		//////////
-		if(servo[HookServo] == 90)
-		{
-			if(joystick.joy1_TopHat == 4)
-			{
-				servo[HookServo] = 240;
-				wait1Msec(500);
-			}
-		}
-		else if(servo[HookServo] == 240)
+		if(servo[HookServo] == 0)
 		{
 			if(joystick.joy1_TopHat == 4)
 			{
 				servo[HookServo] = 90;
+				HookValue = 90;
+				wait1Msec(500);
+			}
+		}
+		else if(servo[HookServo] == 90)
+		{
+			if(joystick.joy1_TopHat == 4)
+			{
+				servo[HookServo] = 0;
+				HookValue = 0;
 				wait1Msec(500);
 			}
 		}
@@ -167,7 +172,7 @@ task main()
 			motor(GripperMotor) = 0;
 		}
 
-		if(servo[GripperServo] == 0)
+		if(servo[GripperServo] == 40)
 		{
 			if(joy1Btn(Btn7) == true)
 			{
@@ -182,7 +187,7 @@ task main()
 		{
 			if(joy1Btn(Btn7) == true)
 			{
-				servo[GripperServo] = 0;
+				servo[GripperServo] = 40;
 				wait1Msec(500);
 			}
 			else
@@ -198,7 +203,7 @@ task main()
 		{
 			motor(LifterMotor) = 100;
 		}
-		else if (joy1Btn(8) == true && LifterEncoderCounts >= 100)
+		else if (joy1Btn(8) == true && LifterEncoderCounts >= 95)
 		{
 			motor(LifterMotor) = -10;
 		}
