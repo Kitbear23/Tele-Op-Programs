@@ -77,8 +77,8 @@ void initializeRobot()
 	RedBtn = false;
 	Joy1Btn3_Previous = false;
 	servo(GoalServo) = 255;
-	servo(GripperServo) = 145;
-	servo(ReleaseServo) = 180;
+	servo(GripperServo) = 142;
+	servo(ReleaseServo) = 159;
 	servo(HookServo) = 0;
 	motor[LeftMotor] = 0;
 	motor[RightMotor] = 0;
@@ -149,21 +149,21 @@ task main()
 		///////////
 		//Release//
 		///////////
-		if(servo[ReleaseServo] == 30)
+		if(servo[ReleaseServo] == 37)
 		{
 			if(joystick.joy1_TopHat == 0)
 			{
-				servo[ReleaseServo] = 180;
-				ReleaseValue = 180;
+				servo[ReleaseServo] = 159;
+				ReleaseValue = 159;
 				wait1Msec(500);
 			}
 		}
-		else if(servo[ReleaseServo] == 180)
+		else if(servo[ReleaseServo] == 159)
 		{
 			if(joystick.joy1_TopHat == 0)
 			{
-				servo[ReleaseServo] = 30;
-				ReleaseValue = 30;
+				servo[ReleaseServo] = 37;
+				ReleaseValue = 37;
 				wait1Msec(500);
 			}
 		}
@@ -202,14 +202,14 @@ task main()
 		{
 			if(joy1Btn(Btn7) == true)
 			{
-				servo[GripperServo] = 145;
+				servo[GripperServo] = 142;
 				wait1Msec(500);
 			}
 			else
 			{
 			}
 		}
-		else if(servo[GripperServo] == 145)
+		else if(servo[GripperServo] == 142)
 		{
 			if(joy1Btn(Btn7) == true)
 			{
